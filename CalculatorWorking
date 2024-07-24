@@ -8,8 +8,106 @@ The program can be divided into the following sections:
 
 Menu Display: The program displays a menu with four options: Addition, Subtraction, Multiplication, and Division.
 User Input: The user is prompted to enter a number corresponding to one of the menu options.
-Calculation: Based on the user's input, the program performs the selected calculation using two numbers input by the user.
+Calculation: Based on the user's input, the program performs the corresponding calculation using two numbers input by the user.
 Result Display: The program displays the result of the calculation.
 Code Organization
 
 The code is organized using a switch statement to handle the different menu options. Each case in the switch statement corresponds to a specific calculation.
+
+Function Extraction
+
+To improve code readability and maintainability, the calculation logic can be extracted into separate functions. Here's an updated version of the code:
+
+c
+
+Verify
+
+Open In Editor
+Edit
+Copy code
+#include <stdio.h>
+#include <stdlib.h>
+
+// Function to perform addition
+float add(float num1, float num2) {
+    return num1 + num2;
+}
+
+// Function to perform subtraction
+float subtract(float num1, float num2) {
+    return num1 - num2;
+}
+
+// Function to perform multiplication
+float multiply(float num1, float num2) {
+    return num1 * num2;
+}
+
+// Function to perform division
+float divide(float num1, float num2) {
+    if (num2 == 0) {
+        printf("Error: Division by zero!\n");
+        return 0;
+    }
+    return num1 / num2;
+}
+
+int main() {
+    int menu;
+    float num1, num2, result;
+
+    printf("Enter a number from the list below\n\n");
+    printf("1. Addition\n");
+    printf("2. Subtraction\n");
+    printf("3. Multiplication\n");
+    printf("4. Division\n\n");
+
+    printf("Enter number: ");
+    scanf("%d", &menu);
+
+    printf("\n");
+
+    switch (menu) {
+        case 1:
+            printf("You entered Addition\n\n");
+            printf("Enter first number: ");
+            scanf("%f", &num1);
+            printf("Enter second number: ");
+            scanf("%f", &num2);
+            result = add(num1, num2);
+            printf("%.2f + %.2f = %.2f\n", num1, num2, result);
+            break;
+        case 2:
+            printf("You entered Subtraction\n\n");
+            printf("Enter first number: ");
+            scanf("%f", &num1);
+            printf("Enter second number: ");
+            scanf("%f", &num2);
+            result = subtract(num1, num2);
+            printf("%.2f - %.2f = %.2f\n", num1, num2, result);
+            break;
+        case 3:
+            printf("You entered Multiplication\n\n");
+            printf("Enter first number: ");
+            scanf("%f", &num1);
+            printf("Enter second number: ");
+            scanf("%f", &num2);
+            result = multiply(num1, num2);
+            printf("%.2f * %.2f = %.2f\n", num1, num2, result);
+            break;
+        case 4:
+            printf("You entered Division\n\n");
+            printf("Enter first number: ");
+            scanf("%f", &num1);
+            printf("Enter second number: ");
+            scanf("%f", &num2);
+            result = divide(num1, num2);
+            printf("%.2f / %.2f = %.2f\n", num1, num2, result);
+            break;
+        default:
+            printf("Enter correct number e.g 1 - 4\n");
+            break;
+    }
+    return 0;
+}
+In this updated version, each calculation is performed by a separate function (add, subtract, multiply, and divide). This makes the code more modular and easier to maintain.
